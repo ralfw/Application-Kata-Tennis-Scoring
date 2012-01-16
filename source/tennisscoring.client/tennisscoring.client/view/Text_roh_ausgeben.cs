@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace tennisscoring.client
+namespace tennisscoring.client.view
 {
 	class Text_roh_ausgeben
 	{

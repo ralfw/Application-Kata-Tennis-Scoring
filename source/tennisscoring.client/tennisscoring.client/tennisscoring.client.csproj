@@ -36,6 +36,9 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="mapping\Spielstand_formatieren.cs" />
+    <Compile Include="view\Aufschlag_erfassen.cs" />
+    <Compile Include="view\Text_roh_ausgeben.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -47,5 +50,9 @@
       <Project>{98EBCF74-887D-4A0F-897A-89958B4C8E1B}</Project>
       <Name>tennisscoring.infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="mapping\" />
+    <Folder Include="view\" />
   </ItemGroup>
 </Project>

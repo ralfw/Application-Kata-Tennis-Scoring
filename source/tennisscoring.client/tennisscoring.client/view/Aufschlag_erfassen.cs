@@ -1,6 +1,6 @@
 using System;
 
-namespace tennisscoring.client
+namespace tennisscoring.client.view
 {
 	class Aufschlag_erfassen
 	{
