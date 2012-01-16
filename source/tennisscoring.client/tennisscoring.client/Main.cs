@@ -14,8 +14,6 @@ namespace tennisscoring.client
 			Console.WriteLine ("Tennis Scoring 1.0\n");
 			
 			// Build
-			var spielstand = new State<Spielstand>();
-			
 			var erfassen = new view.Aufschlag_erfassen();
 			var textdump = new view.Text_roh_ausgeben();
 			
@@ -25,12 +23,9 @@ namespace tennisscoring.client
 			
 			// Bind
 			erfassen.Result += aufschlagspieler_decodieren.Process;
-			aufschlagspieler_decodieren.Result += _ => spielstand.Read(_, spielstand_hochzählen.Process);
-			spielstand_hochzählen.Result += _ => spielstand.Write(_, spielstand_formatieren.Process);
+			aufschlagspieler_decodieren.Result += spielstand_hochzählen.Process;
+			spielstand_hochzählen.Result += spielstand_formatieren.Process;
 			spielstand_formatieren.Result += textdump.Process;
-			
-			// Config
-			spielstand.Write(new Spielstand(), _ => {});
 			
 			// Run
 			erfassen.Run();

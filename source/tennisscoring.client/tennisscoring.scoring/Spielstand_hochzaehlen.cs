@@ -28,21 +28,22 @@ namespace tennisscoring.scoring
 			new[]{"Deuce:Advantage","Deuce:Deuce",		"Deuce:Winner"}
 		};
 		
-		public void Process(Tuple<int, Spielstand> input)
+		
+		private string _spielstand = "Love:Love";
+		
+		
+		public void Process(int aufschlaggewinner)
 		{
-			var aufschlaggewinner = input.Item1;
-			var spielstand = input.Item2;
-			
-			var zählstand = _zählbaum.Where(z => z[0] == spielstand.Punkte).FirstOrDefault();
+			var zählstand = _zählbaum.Where(z => z[0] == _spielstand).FirstOrDefault();
 			if (zählstand == null) 
 				throw new ArgumentException(string.Format("Keine Spielstand für {0} wenn Spieler {1} gewinnt.", 
-				                                          spielstand.Punkte, aufschlaggewinner));
-			spielstand.Punkte = zählstand[aufschlaggewinner+1];
+				                                          _spielstand, aufschlaggewinner));
+			_spielstand = zählstand[aufschlaggewinner];
 			
-			Result(spielstand);
+			Result(_spielstand);
 		}
 		
-		public event Action<Spielstand> Result;
+		public event Action<string> Result;
 	}
 }
 
