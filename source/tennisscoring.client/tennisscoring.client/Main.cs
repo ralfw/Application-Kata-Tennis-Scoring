@@ -19,11 +19,13 @@ namespace tennisscoring.client
 			var erfassen = new view.Aufschlag_erfassen();
 			var textdump = new view.Text_roh_ausgeben();
 			
+			var aufschlagspieler_decodieren = new Aufschlagspieler_decodieren();
 			var spielstand_hochzählen = new Spielstand_hochzählen();
 			var spielstand_formatieren = new mapping.Spielstand_formatieren();
 			
 			// Bind
-			erfassen.Result += _ => spielstand.Read(_, spielstand_hochzählen.Process);
+			erfassen.Result += aufschlagspieler_decodieren.Process;
+			aufschlagspieler_decodieren.Result += _ => spielstand.Read(_, spielstand_hochzählen.Process);
 			spielstand_hochzählen.Result += _ => spielstand.Write(_, spielstand_formatieren.Process);
 			spielstand_formatieren.Result += textdump.Process;
 			

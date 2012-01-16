@@ -39,6 +39,7 @@
     <Compile Include="mapping\Spielstand_formatieren.cs" />
     <Compile Include="view\Aufschlag_erfassen.cs" />
     <Compile Include="view\Text_roh_ausgeben.cs" />
+    <Compile Include="mapping\Aufschlagspieler_decodieren.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

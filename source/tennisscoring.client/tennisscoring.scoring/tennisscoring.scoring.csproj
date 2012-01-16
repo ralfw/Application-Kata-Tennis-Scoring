@@ -38,10 +38,6 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Spielstand.cs" />
     <Compile Include="Spielstand_hochzaehlen.cs" />
-    <Compile Include="tests\test_Spielstand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="tests\" />
-  </ItemGroup>
 </Project>

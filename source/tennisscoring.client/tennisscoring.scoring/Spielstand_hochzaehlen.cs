@@ -15,6 +15,7 @@ namespace tennisscoring.scoring
 			new[]{"Love:Fifteen",	"Fifteen:Fifteen",	"Love:Thirty"},
 			new[]{"Love:Thirty",	"Fifteen:Thirty",	"Love:Forty"},
 			new[]{"Love:Forty",		"Fifteen:Forty",	"Love:Winner"},
+			new[]{"Fifteen:Fifteen","Thirty:Fifteen",	"Fifteen:Thirty"},
 			new[]{"Thirty:Fifteen",	"Forty:Fifteen",	"Thirty:Thirty"},
 			new[]{"Fifteen:Thirty",	"Thirty:Thirty",	"Fifteen:Forty"},
 			new[]{"Forty:Fifteen",	"Winner:Fifteen",	"Forty:Thirty"},
@@ -27,16 +28,16 @@ namespace tennisscoring.scoring
 			new[]{"Deuce:Advantage","Deuce:Deuce",		"Deuce:Winner"}
 		};
 		
-		public void Process(Tuple<char, Spielstand> input)
+		public void Process(Tuple<int, Spielstand> input)
 		{
 			var aufschlaggewinner = input.Item1;
 			var spielstand = input.Item2;
 			
-			var zählstand = _zählbaum.Where(z => z[0] == spielstand.Punkte).First();
-			if (aufschlaggewinner == 'a')
-				spielstand.Punkte = zählstand[1];
-			else
-				spielstand.Punkte = zählstand[2];
+			var zählstand = _zählbaum.Where(z => z[0] == spielstand.Punkte).FirstOrDefault();
+			if (zählstand == null) 
+				throw new ArgumentException(string.Format("Keine Spielstand für {0} wenn Spieler {1} gewinnt.", 
+				                                          spielstand.Punkte, aufschlaggewinner));
+			spielstand.Punkte = zählstand[aufschlaggewinner+1];
 			
 			Result(spielstand);
 		}
