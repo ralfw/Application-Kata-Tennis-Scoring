@@ -1,6 +1,6 @@
 using System;
 
-namespace appshoppen.flowpatterns
+namespace tennisscoring.infrastructure
 {
 	public class State<T>
 	{
@@ -15,7 +15,6 @@ namespace appshoppen.flowpatterns
 			_value = value;
 			continueWith(_value);
 		}
-		
 		
 		public void Read(Action<T> continueWith)
 		{

@@ -1,6 +1,6 @@
 using System;
 
-namespace appshoppen.flowpatterns
+namespace tennisscoring.infrastructure
 {
 	public class ManualResetJoin<T0, T1>
 	{
