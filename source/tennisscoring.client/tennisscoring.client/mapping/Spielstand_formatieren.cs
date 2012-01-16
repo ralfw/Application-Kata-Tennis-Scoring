@@ -9,7 +9,7 @@ namespace tennisscoring.client.mapping
 	{
 		public void Process(Spielstand spielstand)
 		{
-			Result(new[]{string.Format("  {0} : {1}", spielstand.SpielerAPunkte, spielstand.SpielerBPunkte)});
+			Result(new[]{string.Format("  {0}", spielstand.Punkte)});
 		}
 		
 		public event Action<IEnumerable<string>> Result;
