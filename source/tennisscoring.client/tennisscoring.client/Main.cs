@@ -18,18 +18,20 @@ namespace tennisscoring.client
 			var textdump = new view.Text_roh_ausgeben();
 			
 			var aufschlagspieler_decodieren = new Aufschlagspieler_decodieren();
-			var spielstand = new Spielstand_aktualisieren();
+			var spielstand = new Spielstand_hochzählen();
 			var spielstand_formatieren = new mapping.Spielstand_formatieren();
+			var match_formatieren = new Matchstand_formatieren();
+			
+			var spielgewinn_feststellen = new Spielgewinn_feststellen();
+			var setgewinn_feststellen = new Setgewinn_feststellen();
+			var matchgewinn_feststellen = new Matchgewinn_feststellen();
 			
 			// Bind
 			erfassen.Result += aufschlagspieler_decodieren.Process;
 			aufschlagspieler_decodieren.Result += spielstand.Process;
 			spielstand.Result += spielstand_formatieren.Process;
 			spielstand_formatieren.Result += textdump.Process;
-			
-			// Config
-			spielstand.Initialisieren();
-			
+						
 			// Run
 			erfassen.Run();
 		}
