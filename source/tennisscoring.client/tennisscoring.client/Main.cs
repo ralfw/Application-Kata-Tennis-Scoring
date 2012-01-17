@@ -37,7 +37,7 @@ namespace tennisscoring.client
 			setgewinn_feststellen.Spielgewinn += formatter.Spielgewinn_formatieren;
 			setgewinn_feststellen.Setgewinn += _ => eventstore.Write(_, e => matchgewinn_feststellen.Process((string)e));
 			matchgewinn_feststellen.Setgewinn += formatter.Setgewinn_formatieren;
-			matchgewinn_feststellen.Matchgewinn += _ => eventstore.Write(_);
+			matchgewinn_feststellen.Matchgewinn += _ => eventstore.Read(formatter.Spielliste_formatieren);
 			
 			// Run
 			erfassen.Run();

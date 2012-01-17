@@ -36,10 +36,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Spielstand_hochzählen.cs" />
     <Compile Include="Spielgewinn_feststellen.cs" />
     <Compile Include="Setgewinn_feststellen.cs" />
     <Compile Include="Matchgewinn_feststellen.cs" />
+    <Compile Include="Spielstand_hochzaehlen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
