@@ -35,7 +35,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Join.cs" />
     <Compile Include="State.cs" />
-    <Compile Include="Evenstore.cs" />
+    <Compile Include="Eventstore.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -18,20 +18,27 @@ namespace tennisscoring.client
 			var textdump = new view.Text_roh_ausgeben();
 			
 			var aufschlagspieler_decodieren = new Aufschlagspieler_decodieren();
-			var spielstand = new Spielstand_hochzählen();
-			var spielstand_formatieren = new mapping.Spielstand_formatieren();
-			var match_formatieren = new Matchstand_formatieren();
+			var spielstand_hochzählen = new Spielstand_hochzählen();
+			var formatter = new mapping.Formatierer();
 			
+			var eventstore = new Eventstore();
 			var spielgewinn_feststellen = new Spielgewinn_feststellen();
 			var setgewinn_feststellen = new Setgewinn_feststellen();
 			var matchgewinn_feststellen = new Matchgewinn_feststellen();
 			
 			// Bind
 			erfassen.Result += aufschlagspieler_decodieren.Process;
-			aufschlagspieler_decodieren.Result += spielstand.Process;
-			spielstand.Result += spielstand_formatieren.Process;
-			spielstand_formatieren.Result += textdump.Process;
+			aufschlagspieler_decodieren.Result += spielstand_hochzählen.Process;
+			spielstand_hochzählen.Result += formatter.Spielstand_formatieren;
+			spielstand_hochzählen.Result += _ => eventstore.Write(_, e => spielgewinn_feststellen.Process((string)e));
+			formatter.Result += textdump.Process;
 						
+			spielgewinn_feststellen.Result += _ => eventstore.Write(_, e => setgewinn_feststellen.Process((string)e));
+			setgewinn_feststellen.Spielgewinn += formatter.Spielgewinn_formatieren;
+			setgewinn_feststellen.Setgewinn += _ => eventstore.Write(_, e => matchgewinn_feststellen.Process((string)e));
+			matchgewinn_feststellen.Setgewinn += formatter.Setgewinn_formatieren;
+			matchgewinn_feststellen.Matchgewinn += _ => eventstore.Write(_);
+			
 			// Run
 			erfassen.Run();
 		}
