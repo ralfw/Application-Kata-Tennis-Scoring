@@ -2,3 +2,6 @@
 bin/
 obj/
 *.userprefs
+*.test-cache
+*.csproj-Debug|*
+test-results/

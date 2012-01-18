@@ -32,6 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\lib\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -42,6 +45,7 @@
     <Compile Include="view\Aufschlaggewinn_aufnehmen.cs" />
     <Compile Include="mapping\Endergebnis_formatieren.cs" />
     <Compile Include="mapping\Zwischenergebnis_formatieren.cs" />
+    <Compile Include="tests\test_Endergebnis_formatieren.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -57,5 +61,6 @@
   <ItemGroup>
     <Folder Include="mapping\" />
     <Folder Include="view\" />
+    <Folder Include="tests\" />
   </ItemGroup>
 </Project>

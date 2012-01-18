@@ -8,38 +8,27 @@ namespace tennisscoring.client.mapping
 	{
 		public void Process(IEnumerable<object> rawEvents)
 		{
+			var events = rawEvents.Cast<string>();
+			
 			var output = new List<string>();
 			output.Add("");
+		
+			var setgewinner = events.Where(e => e.StartsWith("Setgewinn:"))
+								    .Select(e => int.Parse(e.Split(':')[1]))
+								    .GroupBy(spielerIndex => spielerIndex)
+								    .Select(spielerIndex => new {Spielerindex=spielerIndex.Key, 
+															     Spielgewinne=spielerIndex.Count()});
 			
-			int setNr = 1;
-			int spielNr = 1;
-			var header = string.Format("Set {0} - Spiel {1}", setNr, spielNr);
+			int[] setgewinne = new int[2];
+			setgewinner.ToList().ForEach(sg => setgewinne[sg.Spielerindex] = sg.Spielgewinne);
 			
-			foreach(var e in rawEvents.Cast<string>())
-			{
-					 if (e.StartsWith("Spielgewinn:"))
-				{
-					spielNr++;
-					header = string.Format("Set {0} - Spiel {1}", setNr, spielNr);
-				}
-				else if (e.StartsWith("Setgewinn:"))
-				{
-					setNr++;
-					spielNr = 1;
-					header = string.Format("Set {0} - Spiel {1}", setNr, spielNr);
-				}
-				else
-				{
-					if (header != null)
-					{
-						output.Add("");
-						output.Add(header);
-						output.Add("".PadLeft(header.Length, '-'));
-						header = null;
-					}
-					output.Add(string.Format("  {0}", e));
-				}
-			}
+			output.Add(string.Format("Winner: Player {0} with {1} : {2}",
+			                         setgewinne[0]>setgewinne[1] ? "A" : "B",
+			                         setgewinne[0],
+			                         setgewinne[1]));
+			
+			// Die weitere Formatierung der Ausgabe spare ich mir.
+			// Die Daten lassen sich leicht aus den Events herauslesen.
 			
 			output.Add("");
 			
