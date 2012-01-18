@@ -15,12 +15,12 @@ namespace tennisscoring.client.mapping
 		
 		public void Spielgewinn_formatieren(Tuple<int,int> spielgewinneImSet)
 		{
-			Result(new[]{"", string.Format("  Set: {0}-{1}", spielgewinneImSet.Item1, spielgewinneImSet.Item2)});
+			Result(new[]{"", string.Format("  Set: {0}-{1}", spielgewinneImSet.Item1, spielgewinneImSet.Item2), ""});
 		}
 		
 		public void Setgewinn_formatieren(Tuple<int,int> setgewinneImMatch)
 		{
-			Result(new[]{"", string.Format("  Match: {0}-{1}", setgewinneImMatch.Item1, setgewinneImMatch.Item2)});
+			Result(new[]{string.Format("  Match: {0}-{1}", setgewinneImMatch.Item1, setgewinneImMatch.Item2), ""});
 		}
 		
 		public void Spielliste_formatieren(IEnumerable<object> rawEvents)
@@ -45,11 +45,11 @@ namespace tennisscoring.client.mapping
 					spielNr = 1;
 					header = string.Format("Set {0} - Spiel {1}", setNr, spielNr);
 				}
-				else if (e.StartsWith("Matchgewinn:")) {}
 				else
 				{
 					if (header != null)
 					{
+						output.Add("");
 						output.Add(header);
 						output.Add("".PadLeft(header.Length, '-'));
 						header = null;
