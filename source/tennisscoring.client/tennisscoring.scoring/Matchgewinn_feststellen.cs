@@ -5,6 +5,8 @@ namespace tennisscoring.scoring
 {
 	public class Matchgewinn_feststellen
 	{
+		int _minSetgewinne;
+		
 		int[] _setgewinne = new int[2];
 		
 		
@@ -14,13 +16,19 @@ namespace tennisscoring.scoring
 			
 			Setgewinn(new Tuple<int,int>(_setgewinne[0], _setgewinne[1]));
 			
-			if (_setgewinne[0]>=3 || _setgewinne[1]>=3)
+			if (_setgewinne[0]>=_minSetgewinne || _setgewinne[1]>=_minSetgewinne)
 			{
 				Matchgewinn();				
 				_setgewinne = new int[2];
 			}
 		}
 		
+		
+		public void Config(int minSetgewinne)
+		{
+			_minSetgewinne = minSetgewinne;
+		}
+
 		
 		public event Action<Tuple<int,int>> Setgewinn;
 		public event Action Matchgewinn;

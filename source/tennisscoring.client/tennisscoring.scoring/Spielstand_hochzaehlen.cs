@@ -38,10 +38,10 @@ namespace tennisscoring.scoring
 			if (zählstand == null) 
 				throw new ArgumentException(string.Format("Keine Spielstand für {0} wenn Spieler {1} gewinnt.", 
 				                                          _spielstand, aufschlaggewinner));
-			_spielstand = zählstand[aufschlaggewinner];
+			_spielstand = zählstand[aufschlaggewinner+1];
 			if (_spielstand.IndexOf("Winner")>=0) _spielstand = "Love:Love";
 			
-			Result(zählstand[aufschlaggewinner]);
+			Result(zählstand[aufschlaggewinner+1]);
 		}
 		
 		

@@ -40,6 +40,8 @@
     <Compile Include="Setgewinn_feststellen.cs" />
     <Compile Include="Matchgewinn_feststellen.cs" />
     <Compile Include="Spielstand_hochzaehlen.cs" />
+    <Compile Include="Spielzaehlungsschalter.cs" />
+    <Compile Include="Tiebreak_hochzaehlen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

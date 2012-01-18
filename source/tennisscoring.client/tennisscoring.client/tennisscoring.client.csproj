@@ -36,10 +36,12 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="view\Aufschlag_erfassen.cs" />
     <Compile Include="view\Text_roh_ausgeben.cs" />
     <Compile Include="mapping\Aufschlagspieler_decodieren.cs" />
-    <Compile Include="mapping\Formatierer.cs" />
+    <Compile Include="view\Settings_erfragen.cs" />
+    <Compile Include="view\Aufschlaggewinn_aufnehmen.cs" />
+    <Compile Include="mapping\Endergebnis_formatieren.cs" />
+    <Compile Include="mapping\Zwischenergebnis_formatieren.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

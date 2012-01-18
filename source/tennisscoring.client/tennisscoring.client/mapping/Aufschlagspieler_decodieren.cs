@@ -7,9 +7,9 @@ namespace tennisscoring.client
 		public void Process (char aufschlagspielerCode)
 		{
 			if (char.ToLower(aufschlagspielerCode) == 'a')
-				Result(1);
+				Result(0);
 			else
-				Result(2);
+				Result(1);
 		}
 		
 		public event Action<int> Result;
