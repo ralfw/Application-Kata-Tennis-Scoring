@@ -45,10 +45,10 @@ namespace tennisscoring.client
 			zwischenergebnis_formatieren.Result += textdump.Zwischenstand;
 						
 			spielgewinn_feststellen.Result += setgewinn_feststellen.Process;
-			setgewinn_feststellen.Spielgewinn += zwischenergebnis_formatieren.Spielgewinn_formatieren;
+			setgewinn_feststellen.Spielgewinn += zwischenergebnis_formatieren.Setstand_formatieren;
 			setgewinn_feststellen.Setgewinn += _ => eventstore.Write(_, e => matchgewinn_feststellen.Process((string)e));
 			setgewinn_feststellen.Normale_Spielzählung += schalter.Switch;
-			matchgewinn_feststellen.Setgewinn += zwischenergebnis_formatieren.Setgewinn_formatieren;
+			matchgewinn_feststellen.Setgewinn += zwischenergebnis_formatieren.Matchstand_formatieren;
 			matchgewinn_feststellen.Matchgewinn += () => eventstore.Read(endergebnis_formatieren.Process);
 			endergebnis_formatieren.Result += textdump.Endstand;
 			

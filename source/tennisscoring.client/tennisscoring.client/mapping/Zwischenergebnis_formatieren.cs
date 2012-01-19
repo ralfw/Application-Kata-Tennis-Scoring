@@ -13,12 +13,12 @@ namespace tennisscoring.client.mapping
 			Result(new[]{string.Format("  {0}", spielstand)});
 		}
 		
-		public void Spielgewinn_formatieren(Tuple<int,int> spielgewinneImSet)
+		public void Setstand_formatieren(Tuple<int,int> spielgewinneImSet)
 		{
 			Result(new[]{"", string.Format("  Set: {0}-{1}", spielgewinneImSet.Item1, spielgewinneImSet.Item2), ""});
 		}
 		
-		public void Setgewinn_formatieren(Tuple<int,int> setgewinneImMatch)
+		public void Matchstand_formatieren(Tuple<int,int> setgewinneImMatch)
 		{
 			Result(new[]{string.Format("  Match: {0}-{1}", setgewinneImMatch.Item1, setgewinneImMatch.Item2), ""});
 		}
