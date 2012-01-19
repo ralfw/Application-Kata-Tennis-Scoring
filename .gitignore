@@ -3,5 +3,6 @@ bin/
 obj/
 *.userprefs
 *.test-cache
+*.pidb
 *.csproj-Debug|*
 test-results/
